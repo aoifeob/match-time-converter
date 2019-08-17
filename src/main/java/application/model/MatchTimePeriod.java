@@ -1,4 +1,4 @@
-package application.models;
+package application.model;
 
 public class MatchTimePeriod {
 

@@ -19,12 +19,14 @@ public class TimeTransformerServiceTest {
 
   @Test
   public void roundSecondsRoundsUp(){
-    assertEquals("Seconds should have been rounded up", 13, timeTransformerService.roundSeconds(12.726d));
+    assertEquals("Seconds should have been rounded up", 13,
+        timeTransformerService.roundSeconds(12.500d));
   }
 
   @Test
   public void roundSecondsRoundsDown(){
-    assertEquals("Seconds should have been rounded down", 12, timeTransformerService.roundSeconds(12.158d));
+    assertEquals("Seconds should have been rounded down", 12,
+        timeTransformerService.roundSeconds(12.499d));
   }
 
 }

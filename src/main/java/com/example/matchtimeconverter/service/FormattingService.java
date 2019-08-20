@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 @Service
 public final class FormattingService {
 
-  public String padValueToTwoDigits(int valueForPadding){
-    return String.format("%02d", valueForPadding);
+  public String padSingleDigitValueToTwoDigits(int valueForPadding) {
+    return valueForPadding < 10
+        ? String.format("%02d", valueForPadding)
+        : String.valueOf(valueForPadding);
   }
 
 }

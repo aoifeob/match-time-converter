@@ -27,4 +27,9 @@ public class MatchTimeInputParsingServiceTest {
     assertEquals(45.162d, matchTimeInput.getSeconds(), 0);
   }
 
+  @Test(expected = NullPointerException.class)
+  public void parseNullStringToMatchTimeInput() {
+    matchTimeInputParsingService.parseStringToMatchTimeInput(null);
+  }
+
 }

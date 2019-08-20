@@ -41,8 +41,7 @@ public final class MatchTimeOutputFactory {
 
   public MatchTimeOutput transformInputToOutput(MatchTimeInput matchTimeInput){
     MatchTimeOutput.MatchTimeOutputBuilder matchTimeOutput = MatchTimeOutput.builder();
-    String outputPeriod = periodTransformerService.getLongFormPeriod(matchTimeInput.getPeriod());
-    matchTimeOutput.period(outputPeriod);
+    matchTimeOutput.period(periodTransformerService.getLongFormPeriod(matchTimeInput.getPeriod()));
 
     if (hasAdditionalTime(matchTimeInput)){
       matchTimeOutput.minutes(MAX_TIME_PER_HALF.get(matchTimeInput.getPeriod()));
@@ -61,14 +60,16 @@ public final class MatchTimeOutputFactory {
 
   public String getMatchTimeOutputAsString(MatchTimeOutput matchTimeOutput){
     StringBuilder output = new StringBuilder();
-    output.append(formattingService.padValueToTwoDigits(matchTimeOutput.getMinutes()))
+    output.append(formattingService.padSingleDigitValueToTwoDigits(matchTimeOutput.getMinutes()))
         .append(":")
-        .append(formattingService.padValueToTwoDigits(matchTimeOutput.getSeconds()));
+        .append(formattingService.padSingleDigitValueToTwoDigits(matchTimeOutput.getSeconds()));
     if (matchTimeOutput.getAdditionalMinutes() > 0 || matchTimeOutput.getAdditionalSeconds() > 0) {
         output.append(" + ")
-            .append(formattingService.padValueToTwoDigits(matchTimeOutput.getAdditionalMinutes()))
+            .append(formattingService
+                .padSingleDigitValueToTwoDigits(matchTimeOutput.getAdditionalMinutes()))
             .append(":")
-            .append(formattingService.padValueToTwoDigits(matchTimeOutput.getAdditionalSeconds()));
+            .append(formattingService
+                .padSingleDigitValueToTwoDigits(matchTimeOutput.getAdditionalSeconds()));
     }
     output.append(" - ")
         .append(matchTimeOutput.getPeriod());

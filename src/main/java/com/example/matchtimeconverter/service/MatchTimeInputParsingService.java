@@ -6,7 +6,11 @@ import org.springframework.stereotype.Service;
 @Service
 public final class MatchTimeInputParsingService {
 
-  MatchTimeInput parseStringToMatchTimeInput(String matchTime){
+  MatchTimeInput parseStringToMatchTimeInput(String matchTime) {
+    if (matchTime == null) {
+      throw new NullPointerException(
+          "Received null value while attempting to build MatchTimeInput model.");
+    }
     return MatchTimeInput.builder()
         .period(getPeriodFromMatchTime(matchTime))
         .minutes(getMinutesFromMatchTime(matchTime))

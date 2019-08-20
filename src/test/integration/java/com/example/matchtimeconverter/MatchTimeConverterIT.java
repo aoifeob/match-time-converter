@@ -42,6 +42,8 @@ public class MatchTimeConverterIT {
         matchTimeTransformerService.transformMatchTime("[H1] 50:06.000"));
     assertEquals("Output should match expected value", "90:00 + 01:43 - SECOND_HALF",
         matchTimeTransformerService.transformMatchTime("[H2] 91:43.000"));
+    assertEquals("Output should match expected value", "45:00 + 00:00 - FIRST_HALF",
+        matchTimeTransformerService.transformMatchTime("[H1] 45:00.001"));
   }
 
   @Test

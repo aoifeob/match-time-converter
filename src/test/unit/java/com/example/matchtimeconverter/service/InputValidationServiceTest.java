@@ -34,7 +34,7 @@ public class InputValidationServiceTest {
         "[H2] 91:43.000",
         "[H2] 101:43.000");
     for (String validTestInput : validTestInputs) {
-      assertTrue("Result should match the expected boolean value",
+      assertTrue("Result should be true",
           inputValidationService.isValidMatchTimeInputString(validTestInput));
     }
   }
@@ -56,7 +56,7 @@ public class InputValidationServiceTest {
         "",
         null);
     for (String invalidTestInput : invalidTestInputs) {
-      assertFalse("Result should match the expected boolean value",
+      assertFalse("Result should be false",
           inputValidationService.isValidMatchTimeInputString(invalidTestInput));
     }
   }

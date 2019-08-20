@@ -1,5 +1,7 @@
 package com.example.matchtimeconverter;
 
+import static org.junit.Assert.assertEquals;
+
 import com.example.matchtimeconverter.service.MatchTimeTransformerService;
 import java.util.Arrays;
 import java.util.Collection;
@@ -55,8 +57,7 @@ public class MatchTimeConverterIT {
 
   @Test
   public void convertMatchTimes(){
-//
-//    assertEquals("Output should match expected value", expectedOutput, matchTimeTransformerService.transformMatchTime(
-//        Collections.singletonList(input)).get(0));
+    assertEquals("Output should match expected value", expectedOutput,
+        matchTimeTransformerService.transformMatchTime(input));
   }
 }

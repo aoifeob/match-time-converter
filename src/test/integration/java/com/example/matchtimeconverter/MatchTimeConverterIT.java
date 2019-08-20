@@ -58,6 +58,7 @@ public class MatchTimeConverterIT {
 
   @Test
   public void convertMatchTimes(){
+
     assertEquals("Output should match expected value", expectedOutput, matchTimeTransformerService.transformMatchTimesList(
         Collections.singletonList(input)).get(0));
   }

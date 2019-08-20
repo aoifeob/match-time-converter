@@ -8,14 +8,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 @RunWith(Parameterized.class)
+@SpringBootTest
+@ActiveProfiles("test")
 public class InputValidationServiceTest {
 
-  private InputValidationService inputValidationService = new InputValidationService();
-
-//  @Autowired
-//  private InputValidationService inputValidationService;
+  @Autowired
+  private InputValidationService inputValidationService;
 
 
   private String inputString;

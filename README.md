@@ -40,5 +40,5 @@ Requires: Java 8, Maven
 1. Clone the repository to your local machine.
 2. Run `mvn package` to create an executable .jar file.
 3. Optionally, save the input file of your choice inside the `match-time-converter` folder. A sample file (`input.data`) is provided if you do not wish to create a new file.
-4. Run `java -jar target/match-time-converter-0.0.1-SNAPSHOT.jar "path-to-file"`, replacing `path-to-file` with the path to the file you want converted (eg `java -jar target/match-time-converter-0.0.1-SNAPSHOT.jar "input.data"`). A relative path may be used for files below the `match-time-converter` folder, otherwise an absolute path should be provided.
+4. Run `java -jar target/match-time-converter-0.0.1-SNAPSHOT.jar "path-to-file"`, replacing `path-to-file` with the path to the file you want converted (eg `java -jar target/match-time-converter-0.0.1-SNAPSHOT.jar "input.data"`). A relative path may be used for files below the `match-time-converter` folder, otherwise an absolute path should be provided. Multiple file paths may be provided.
 5. The results will be printed to the command line in order.

@@ -5,9 +5,9 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PeriodTransformerService {
+public final class PeriodTransformerService {
 
-  private final Map<String, String> periodMap = ImmutableMap.of
+  private static final Map<String, String> PERIOD_MAP = ImmutableMap.of
       ("PM", "PRE_MATCH",
       "H1", "FIRST_HALF",
       "HT", "HALF_TIME",
@@ -15,7 +15,7 @@ public class PeriodTransformerService {
       "FT", "FULL_TIME");
 
   public String getLongFormPeriod(String shortFormPeriod){
-    return periodMap.get(shortFormPeriod);
+    return PERIOD_MAP.get(shortFormPeriod);
   }
 
 }

@@ -8,18 +8,18 @@ import com.example.matchtimeconverter.service.TimeTransformerService;
 import com.google.common.collect.ImmutableMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
-public class MatchTimeOutputFactory {
+@Component
+public final class MatchTimeOutputFactory {
 
-  private Map<String, Integer> maxTimePerHalf = ImmutableMap.of
+  private static final Map<String, Integer> MAX_TIME_PER_HALF = ImmutableMap.of
       ("H1", 45,
        "H2", 90);
 
-  private PeriodTransformerService periodTransformerService;
-  private TimeTransformerService timeTransformerService;
-  private FormattingService formattingService;
+  private final PeriodTransformerService periodTransformerService;
+  private final TimeTransformerService timeTransformerService;
+  private final FormattingService formattingService;
 
   @Autowired
   public MatchTimeOutputFactory(PeriodTransformerService periodTransformerService,
@@ -31,8 +31,8 @@ public class MatchTimeOutputFactory {
   }
 
   private boolean hasAdditionalTime(MatchTimeInput matchTimeInput){
-    if (maxTimePerHalf.containsKey(matchTimeInput.getPeriod())){
-      int maxTime = maxTimePerHalf.get(matchTimeInput.getPeriod());
+    if (MAX_TIME_PER_HALF.containsKey(matchTimeInput.getPeriod())) {
+      int maxTime = MAX_TIME_PER_HALF.get(matchTimeInput.getPeriod());
       return matchTimeInput.getMinutes() > maxTime ||
           (matchTimeInput.getMinutes() == maxTime && matchTimeInput.getSeconds() > 0);
     }
@@ -40,21 +40,23 @@ public class MatchTimeOutputFactory {
   }
 
   public MatchTimeOutput transformInputToOutput(MatchTimeInput matchTimeInput){
-    MatchTimeOutput matchTimeOutput = new MatchTimeOutput();
+    MatchTimeOutput.MatchTimeOutputBuilder matchTimeOutput = MatchTimeOutput.builder();
     String outputPeriod = periodTransformerService.getLongFormPeriod(matchTimeInput.getPeriod());
-    matchTimeOutput.setPeriod(outputPeriod);
+    matchTimeOutput.period(outputPeriod);
 
     if (hasAdditionalTime(matchTimeInput)){
-      matchTimeOutput.setMinutes(maxTimePerHalf.get(matchTimeInput.getPeriod()));
-      matchTimeOutput.setAdditionalMinutes(matchTimeInput.getMinutes() - maxTimePerHalf.get(matchTimeInput.getPeriod()));
-      matchTimeOutput.setAdditionalSeconds(timeTransformerService.roundSeconds(matchTimeInput.getSeconds()));
+      matchTimeOutput.minutes(MAX_TIME_PER_HALF.get(matchTimeInput.getPeriod()));
+      matchTimeOutput.additionalMinutes(
+          matchTimeInput.getMinutes() - MAX_TIME_PER_HALF.get(matchTimeInput.getPeriod()));
+      matchTimeOutput
+          .additionalSeconds(timeTransformerService.roundSeconds(matchTimeInput.getSeconds()));
     }
     else {
-      matchTimeOutput.setMinutes(matchTimeInput.getMinutes());
-      matchTimeOutput.setSeconds(timeTransformerService.roundSeconds(matchTimeInput.getSeconds()));
+      matchTimeOutput.minutes(matchTimeInput.getMinutes());
+      matchTimeOutput.seconds(timeTransformerService.roundSeconds(matchTimeInput.getSeconds()));
     }
 
-    return matchTimeOutput;
+    return matchTimeOutput.build();
   }
 
   public String getMatchTimeOutputAsString(MatchTimeOutput matchTimeOutput){

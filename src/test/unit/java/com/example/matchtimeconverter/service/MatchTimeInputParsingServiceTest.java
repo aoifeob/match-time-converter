@@ -27,22 +27,4 @@ public class MatchTimeInputParsingServiceTest {
     assertEquals(45.162d, matchTimeInput.getSeconds(), 0);
   }
 
-  @Test
-  public void getPeriodFromMatchTime() {
-    String input = "[H2] 60:32.994";
-    assertEquals("H2", matchTimeInputParsingService.getPeriodFromMatchTime(input));
-  }
-
-  @Test
-  public void getMinutesFromMatchTime() {
-    String input = "[H2] 60:32.994";
-    assertEquals(60, matchTimeInputParsingService.getMinutesFromMatchTime(input));
-  }
-
-  @Test
-  public void getSecondsFromMatchTime() {
-    String input = "[H2] 60:32.994";
-    assertEquals(32.994d, matchTimeInputParsingService.getSecondsFromMatchTime(input), 0);
-  }
-
 }

@@ -1,20 +1,16 @@
 package com.example.matchtimeconverter.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
 public class MatchTimeOutput {
 
-  private int minutes;
-  private int seconds;
-  private int additionalMinutes;
-  private int additionalSeconds;
-  private String period;
+  private final int minutes;
+  private final int seconds;
+  private final int additionalMinutes;
+  private final int additionalSeconds;
+  private final String period;
 
 }

@@ -3,17 +3,16 @@ package com.example.matchtimeconverter.factory;
 import static org.junit.Assert.assertEquals;
 
 import com.example.matchtimeconverter.model.MatchTimeOutput;
-import com.example.matchtimeconverter.service.FormattingService;
-import com.example.matchtimeconverter.service.PeriodTransformerService;
-import com.example.matchtimeconverter.service.TimeTransformerService;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)
 public class MatchTimeOutputFactoryTest {
 
-  private PeriodTransformerService periodTransformerService = new PeriodTransformerService();
-  private TimeTransformerService timeTransformerService = new TimeTransformerService();
-  private FormattingService formattingService = new FormattingService();
-  private MatchTimeOutputFactory matchTimeOutputFactory = new MatchTimeOutputFactory(periodTransformerService, timeTransformerService, formattingService);
+  @Autowired
+  private MatchTimeOutputFactory matchTimeOutputFactory;
 
   @Test
   public void getMatchTimeOutPutAsStringIsCorrect(){

@@ -8,13 +8,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @RunWith(Parameterized.class)
 public class InputValidationServiceTest {
 
-  @Autowired
-  private InputValidationService inputValidationService;
+  private InputValidationService inputValidationService = new InputValidationService();
+
+//  @Autowired
+//  private InputValidationService inputValidationService;
 
 
   private String inputString;

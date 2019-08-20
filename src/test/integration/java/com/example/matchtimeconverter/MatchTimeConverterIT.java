@@ -2,33 +2,23 @@ package com.example.matchtimeconverter;
 
 import static org.junit.Assert.assertEquals;
 
-import com.example.matchtimeconverter.factory.MatchTimeOutputFactory;
-import com.example.matchtimeconverter.service.FormattingService;
-import com.example.matchtimeconverter.service.InputValidationService;
-import com.example.matchtimeconverter.service.MatchTimeInputParsingService;
 import com.example.matchtimeconverter.service.MatchTimeTransformerService;
-import com.example.matchtimeconverter.service.PeriodTransformerService;
-import com.example.matchtimeconverter.service.TimeTransformerService;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 @RunWith(Parameterized.class)
+@SpringBootTest
 public class MatchTimeConverterIT {
 
-  private InputValidationService inputValidationService = new InputValidationService();
-  private MatchTimeInputParsingService matchTimeInputParsingService = new MatchTimeInputParsingService();
-  private PeriodTransformerService periodTransformerService = new PeriodTransformerService();
-  private TimeTransformerService timeTransformerService = new TimeTransformerService();
-  private FormattingService formattingService = new FormattingService();
-  private MatchTimeOutputFactory matchTimeOutputFactory = new MatchTimeOutputFactory(periodTransformerService, timeTransformerService, formattingService);
-
-  private MatchTimeTransformerService matchTimeTransformerService = new MatchTimeTransformerService(inputValidationService, matchTimeInputParsingService, matchTimeOutputFactory);
+  @Autowired
+  private MatchTimeTransformerService matchTimeTransformerService;
 
   private String input;
   private String expectedOutput;

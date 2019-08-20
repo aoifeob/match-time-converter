@@ -1,6 +1,6 @@
 package com.example.matchtimeconverter.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import com.example.matchtimeconverter.model.MatchTimeInput;
 import org.junit.Test;
@@ -15,7 +15,7 @@ public class MatchTimeInputParsingServiceTest {
     MatchTimeInput matchTimeInput = matchTimeInputParsingService.parseStringToMatchTimeInput(input);
     assertEquals("H1", matchTimeInput.getPeriod());
     assertEquals(30, matchTimeInput.getMinutes());
-    assertEquals(45.162f, matchTimeInput.getSeconds(), 0);
+    assertEquals(45.162d, matchTimeInput.getSeconds(), 0);
   }
 
   @Test
@@ -33,7 +33,7 @@ public class MatchTimeInputParsingServiceTest {
   @Test
   public void getSecondsFromMatchTime() {
     String input = "[H2] 60:32.994";
-    assertEquals(32.994f, matchTimeInputParsingService.getSecondsFromMatchTime(input), 0);
+    assertEquals(32.994d, matchTimeInputParsingService.getSecondsFromMatchTime(input), 0);
   }
 
 }
